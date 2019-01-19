@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 19:30:39 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 21:00:00 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void			rev_rotate_stack(t_list **stack);
 */
 
 t_list			*create_stack(int size);
+int				fill_stack2int(t_list *stack, char **vals, int amount);
 
 #endif
