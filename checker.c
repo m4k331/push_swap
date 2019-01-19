@@ -6,13 +6,19 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:39:43 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 19:02:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 19:30:31 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <stdio.h>
 #define IS_INT(x) ((x) >= -__INT_MAX__ - 1 && (x) <= __INT_MAX__)
+
+/*
+** The function accepts a pointer to the stack and a string value (val)
+** that contains an integer in string. If val is valid an integer then
+** stack->content = (int)val, otherwise it does not write the content
+*/
 
 void		set_int2stack(t_list *stack, char *val)
 {

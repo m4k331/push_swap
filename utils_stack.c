@@ -6,11 +6,15 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:57:28 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 19:02:34 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 19:30:43 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+
+/*
+** Creating new empty stack (single linked list)
+*/
 
 t_list		*create_stack(int size)
 {

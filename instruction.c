@@ -6,11 +6,15 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:29:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 13:29:18 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 19:30:21 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+
+/*
+** Swap the first 2 elements in stack
+*/
 
 void		swap_stack(t_list **stack)
 {
@@ -26,6 +30,10 @@ void		swap_stack(t_list **stack)
 	}
 }
 
+/*
+** Take the first element stack src and put it at the top of dst
+*/
+
 void		push_stack(t_list **dst, t_list **src)
 {
 	t_list	*tmp;
@@ -39,6 +47,10 @@ void		push_stack(t_list **dst, t_list **src)
 		*dst = tmp;
 	}
 }
+
+/*
+** Shift up all elements of stack by 1 (the first element becomes the last one)
+*/
 
 void		rotate_stack(t_list **stack)
 {
@@ -58,6 +70,10 @@ void		rotate_stack(t_list **stack)
 		tmp->next = 0;
 	}
 }
+
+/*
+** Shift down all elements of stack by 1 (the last element becomes the 1-st one)
+*/
 
 void		rev_rotate_stack(t_list **stack)
 {
