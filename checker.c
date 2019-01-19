@@ -6,11 +6,12 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:39:43 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 16:32:06 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 17:08:17 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include <stdio.h>
 #define IS_INT(x) ((x) >= -__INT_MAX__ - 1 && (x) <= __INT_MAX__)
 
 /*
@@ -40,13 +41,14 @@ void		set_int2stack(t_list *stack, char *val)
 		val++;
 	while (*val == 48)
 		val++;
-	while (ft_isdigit(*val) && IS_INT(res * sign))
+	while (ft_isdigit(*val) && res < __INT_MAX__)
 		res = res * 10 + (*val++ - 48);
 	while (ft_isspace(*val))
 		val++;
-	if (!*val && IS_INT(res * sign) && (p_res = (int*)malloc(sizeof(int))))
+	res *= sign;
+	if (!*val && IS_INT(res) && (p_res = (int*)malloc(sizeof(int))))
 	{
-		*p_res = (int)(res * sign);
+		*p_res = (int)(res);
 		stack->content = (void*)p_res;
 		stack->content_size = sizeof(int);
 	}
