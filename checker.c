@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:39:43 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 17:08:17 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 19:02:10 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,6 @@
 #include <stdio.h>
 #define IS_INT(x) ((x) >= -__INT_MAX__ - 1 && (x) <= __INT_MAX__)
 
-/*
-void		fill_stack(t_list *a, char **av, int ac)
-{
-	t_list	*head;
-
-	head = a;
-	while (ac-- > 1)
-	{
-		if (k)
-	}
-}
-*/
 void		set_int2stack(t_list *stack, char *val)
 {
 	long	res;
@@ -67,11 +55,18 @@ int			main(int ac, char **av)
 */
 	t_list	*a;
 
-	a = ft_lstnew(0, 0);
+	a = create_stack(ac - 1);
+	while (a)
+	{
+		printf("%zu\n", a->content_size);
+		a = a->next;
+	}
+/*
 	set_int2stack(a, av[1]);
 	if (a->content)
 		printf("a->content:%d\na->content_size:%zu\n", *(int*)(a->content), a->content_size);
 	else
 		printf("arg invalid\n");
+*/
 	return (0);
 }
