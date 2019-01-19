@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 20:58:27 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 22:04:20 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,65 @@ int			fill_stack2int(t_list *stack, char **vals, int amount)
 		i++;
 	}
 	return ((i == amount ? 1 : 0));
+}
+
+/*
+** The function of checking duplicate content in the stack
+** returns 1 if found duplicate, otherwise returns 0
+*/
+
+int			check_dup(t_list *stack)
+{
+	t_list	*head;
+	int		dup;
+
+	dup = 0;
+	head = stack;
+	while (head && !dup)
+	{
+		while (stack->next)
+		{
+			stack = stack->next;
+			if (*(int*)head->content == *(int*)stack->content)
+			{
+				dup = 1;
+				break ;
+			}
+		}
+		head = head->next;
+		stack = head;
+	}
+	return (dup);
+}
+
+/*
+** The function for deleting content in the stack
+*/
+
+void		del_content(void *content, size_t size)
+{
+	if (content && size)
+	{
+		free(content);
+		content = 0;
+	}
+}
+
+/*
+** The function filled stack with an integers
+** In case of invalid input, the function clears the stack and return NULL
+*/
+
+void		fill_stack(t_list **stack, char **vals, int size)
+{
+	int		err;
+
+	err = 0;
+	*stack = create_stack(size);
+	if ((fill_stack2int(*stack, vals, size)))
+		err = check_dup(*stack);
+	else
+		err = 1;
+	if (err)
+		ft_lstdel(stack, del_content);
 }

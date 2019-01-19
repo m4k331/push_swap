@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:39:43 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 20:59:31 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/19 22:09:40 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ int			main(int ac, char **av)
 */
 	t_list	*a;
 
-	a = create_stack(ac - 1);
-	if (fill_stack2int(a, ++av, --ac))
-		while (a)
-		{
-			printf("a->%d\n", *(int*)(a->content));
-			a = a->next;
-		}
-	else
-		printf("error\n");
+	if (ac > 1)
+	{
+		fill_stack(&a, ++av, --ac);
+		if (a)
+			while (a)
+			{
+				printf("a->%d\n", *(int*)(a->content));
+				a = a->next;
+			}
+		else
+			printf("error\n");
+	}
 	return (0);
 }
