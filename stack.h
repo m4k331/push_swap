@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 16:39:38 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/21 00:11:43 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,25 @@ void			rev_rotate_stack(t_list **stack);
 ** ##################### WRAPPERS #####################
 */
 
-int				wrap_swap(t_list **a, t_list **b, char *inst)
-int				wrap_put(t_list **a, t_list **b, char *inst)
-int				wrap_rotate(t_list **a, t_list **b, char *inst)
-int				wrap_rev_rotate(t_list **a, t_list **b, char *inst)
+int				wrap_swap(t_list **a, t_list **b, char *inst);
+int				wrap_put(t_list **a, t_list **b, char *inst);
+int				wrap_rotate(t_list **a, t_list **b, char *inst);
+int				wrap_rev_rotate(t_list **a, t_list **b, char *inst);
 
 /*
 ** ##################### UTILS #####################
 */
 
 t_list			*create_stack(int size);
+void			del_content(void *content, size_t size);
+void			clear2stacks(t_list *a, t_list *b);
+int				is_sorted_stack(t_list *stack);
+void			print_stack(t_list *stack);
 
 /*
 ** ##################### MAIN #####################
 */
 
-void			fill_stack(t_list **stack, char **vals, int size);
+int				fill_stack(t_list **stack, char **vals, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 00:05:41 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/20 20:03:41 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,11 @@ int			check_dup(t_list *stack)
 }
 
 /*
-** The function for deleting content in the stack
-*/
-
-void		del_content(void *content, size_t size)
-{
-	if (content && size)
-	{
-		free(content);
-		content = 0;
-	}
-}
-
-/*
 ** The function filled stack with an integers
 ** In case of invalid input, the function clears the stack and return NULL
 */
 
-void		fill_stack(t_list **stack, char **vals, int size)
+int			fill_stack(t_list **stack, char **vals, int size)
 {
 	int		err;
 
@@ -128,4 +115,5 @@ void		fill_stack(t_list **stack, char **vals, int size)
 		err = 1;
 	if (err)
 		ft_lstdel(stack, del_content);
+	return (!err);
 }
