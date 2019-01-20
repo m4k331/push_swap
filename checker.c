@@ -6,12 +6,22 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:39:43 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 22:09:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/20 15:29:02 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <stdio.h>
+
+/*
+** The function of executing instructions for stacks
+** returns 1 if executed successfully, or 0 if not
+*/
+
+int			exec_inst(t_list *a, t_list *b, char *inst)
+{
+
+}
 
 int			main(int ac, char **av)
 {

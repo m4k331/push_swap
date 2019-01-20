@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:29:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 19:30:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/20 16:02:12 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		swap_stack(t_list **stack)
 ** Take the first element stack src and put it at the top of dst
 */
 
-void		push_stack(t_list **dst, t_list **src)
+void		put_stack(t_list **dst, t_list **src)
 {
 	t_list	*tmp;
 

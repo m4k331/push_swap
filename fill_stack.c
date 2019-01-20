@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 22:04:20 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/20 00:05:41 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		set_int2stack(t_list *stack, char *val)
 }
 
 /*
-** The function fill stack takes an array strings that contains integers 
+** The function fill stack takes an array strings that contains integers
 ** returns 1 if successful, otherwise returns 0
 ** NOTE: the function is not protected
 */
