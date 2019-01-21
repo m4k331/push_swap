@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:29:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 18:15:20 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/21 19:03:44 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,20 @@ void		put_stack(t_list **dst, t_list **src)
 	t_list	*tmp;
 
 	tmp = 0;
-	if (dst && src && *dst && *src)
+	if (dst && src && *src)
 	{
-		tmp = *src;
-		*src = (*src)->next;
-		tmp->next = *dst;
-		*dst = tmp;
+		if (*dst)
+		{
+			tmp = *src;
+			*src = (*src)->next;
+			tmp->next = *dst;
+			*dst = tmp;
+		}
+		else
+		{
+			*dst = *src;
+			*src = (*src)->next;
+		}
 	}
 }
 
