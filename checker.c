@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:39:43 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/21 00:45:18 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/24 21:02:59 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 ** rra, rrb, rrr - reverse rotate
 */
 
-static int	exec_inst(t_list **a, t_list **b, char *inst)
+static int		exec_inst(t_list **a, t_list **b, char *inst)
 {
-	int		exec;
-	size_t	len;
+	int			exec;
+	size_t		len;
 
 	exec = 0;
 	len = ft_strlen(inst);
@@ -50,32 +50,24 @@ static int	exec_inst(t_list **a, t_list **b, char *inst)
 ** returns -1 otherwise.
 */
 
-static int	valid_input(char *in)
+static int		sort_stack(t_list **a, t_list **b)
 {
-	int		valid;
-
-	valid = 1;
-	if (in[2] == '\n')
-		in[2] = 0;
-	else if (in[3] == '\n')
-		in[3] = 0;
-	else
-		valid = 0;
-	return (valid);
-}
-
-static int	sort_stack(t_list **a, t_list **b)
-{
-	int		err;
-	char	inst[4];
-	int		rb;
+	int			err;
+	char		inst[4];
+	int			rb;
 
 	err = 0;
 	rb = 0;
-	while (err == 0 && (rb = read(0, inst, 4)) > 0)
+	while (err == 0 && (rb = read(0, inst, 4)) > 0 && rb != -1)
 	{
-		if (valid_input(inst))
-			err = !exec_inst(a, b, inst);
+		if (inst[2] == '\n' || inst[3] == '\n')
+		{
+			if (inst[2] == '\n')
+				inst[2] = 0;
+			else
+				inst[3] = 0;
+			err = (exec_inst(a, b, inst) ? 0 : -1);
+		}
 		else
 			err = -1;
 		ft_memset(inst, 0, rb);
@@ -99,11 +91,11 @@ static int	sort_stack(t_list **a, t_list **b)
 **							   an instruction don’t exist or is incorrectly.
 */
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	t_list	*a;
-	t_list	*b;
-	int		state;
+	t_list		*a;
+	t_list		*b;
+	int			state;
 
 	a = 0;
 	b = 0;
@@ -116,9 +108,6 @@ int			main(int ac, char **av)
 				ft_putstr("OK\n");
 			else if (state == 0)
 				ft_putstr("KO\n");
-			print_stack(a);
-			write(1, "\n", 1);
-			print_stack(b);
 			clear2stacks(a, b);
 		}
 		if (state == -1)

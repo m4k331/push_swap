@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 20:03:41 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/24 19:48:57 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void		set_int2stack(t_list *stack, char *val)
 
 	res = 0;
 	p_res = 0;
-	while (ft_isspace(*val))
-		val++;
 	sign = *val == '-' ? -1 : 1;
 	if (*val == '-' || *val == '+')
 		val++;
@@ -36,8 +34,6 @@ void		set_int2stack(t_list *stack, char *val)
 		val++;
 	while (ft_isdigit(*val) && res < __INT_MAX__)
 		res = res * 10 + (*val++ - 48);
-	while (ft_isspace(*val))
-		val++;
 	res *= sign;
 	if (!*val && IS_INT(res) && (p_res = (int*)malloc(sizeof(int))))
 	{
