@@ -103,7 +103,7 @@ void		print_stack(t_list *stack)
 	while (stack)
 	{
 		if (stack->content)
-			printf("%d\n", *(int*)stack->content);
+			printf("%d ", *(int*)stack->content);
 		stack = stack->next;
 	}
 }

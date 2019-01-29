@@ -12,8 +12,7 @@
 
 #ifndef STACK_H
 # define STACK_H
-# include "../libft/libft.h"
-# define BUFF_SIZE 2048
+# include "libft.h"
 
 /*
 ** ##################### INSTRUCTIONS #####################
@@ -42,11 +41,13 @@ void			del_content(void *content, size_t size);
 void			clear2stacks(t_list *a, t_list *b);
 int				is_sorted_stack(t_list *stack);
 void			print_stack(t_list *stack);
+int				get_pivot(t_list *stack, int size);
 
 /*
 ** ##################### MAIN #####################
 */
 
 int				fill_stack(t_list **stack, char **vals, int size);
+void			quick_sort(t_list **a, t_list **b, int size);
 
 #endif
