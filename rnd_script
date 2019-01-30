@@ -1,0 +1,10 @@
+#!/bin/bash
+MAXITER=10
+iter=1
+while [ "$iter" -le $MAXITER ]
+do
+	number=$RANDOM
+	echo $number
+	echo ' '
+	let "iter += 1"
+done

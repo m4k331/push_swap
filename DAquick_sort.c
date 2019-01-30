@@ -1,5 +1,5 @@
 #include "stack.h"
-static int count = 0;
+
 static int	stack_ascending(t_list *stack, int size)
 {
 	int		ascending;
@@ -46,18 +46,18 @@ static int	stack_descending(t_list *stack, int size)
 
 static void	swap_ascending(t_list **stack, int size)
 {
-	swap_stack(stack);count++;
+	swap_stack(stack);
 	if (stack_ascending(*stack, size))
 		return ;
-	swap_stack(stack);count--;
+	swap_stack(stack);
 }
 
 static void	swap_descending(t_list **stack, int size)
 {
-	swap_stack(stack);count++;
+	swap_stack(stack);
 	if (stack_descending(*stack, size))
 		return ;
-	swap_stack(stack);count--;
+	swap_stack(stack);
 }
 
 int			partition_ascending(t_list **a, t_list **b, int size)
@@ -78,12 +78,12 @@ int			partition_ascending(t_list **a, t_list **b, int size)
 		{
 			if (iter == 2 || iter == 3)
 				swap_ascending(a, size);
-			if (*(int*)(*a)->content < pivot && ++put && ++count)
+			if (*(int*)(*a)->content < pivot && ++put)
 				put_stack(b, a);
-			else if (++rot && ++count)
+			else if (++rot)
 				rotate_stack(a);
 		}
-	while (rot-- && ++count)
+	while (rot--)
 		rev_rotate_stack(a);
 	return (put);
 }
@@ -105,12 +105,12 @@ int			partition_descending(t_list **a, t_list **b, int size)
 	{
 		if (!stack_descending(*b, size) && (iter == 2 || iter == 3))
 			swap_descending(b, size);
-		if (*(int*)(*b)->content >= pivot && ++put && ++count)
+		if (*(int*)(*b)->content >= pivot && ++put)
 			put_stack(a, b);
-		else if (++rot && ++count)
+		else if (++rot)
 			rotate_stack(b);
 	}
-	while (rot-- && ++count)
+	while (rot--)
 		rev_rotate_stack(b);
 	return (put);
 }
@@ -157,13 +157,12 @@ void		quick_sort(t_list **a, t_list **b, int size)
 	{
 		if (stack_ascending(*a, size - put) && *(int*)(*a)->content >= pivot)
 			break ;
-		if (*(int*)(*a)->content < pivot && ++put && ++count)
+		if (*(int*)(*a)->content < pivot && ++put)
 			put_stack(b, a);
-		else if (++count)
+		else
 			rotate_stack(a);
 	}
 	if (!stack_ascending(*a, size - put))
 		quick_sort(a, b, size - put);
 	left_sort(a, b, put);
-	printf("COUNT %d PUT %d\n", count, put);
 }

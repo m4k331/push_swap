@@ -107,3 +107,16 @@ void		print_stack(t_list *stack)
 		stack = stack->next;
 	}
 }
+
+int			get_stack_size(t_list *stack)
+{
+	int		size;
+
+	size = 0;
+	while (stack)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return (size);
+}

@@ -41,7 +41,8 @@ void			del_content(void *content, size_t size);
 void			clear2stacks(t_list *a, t_list *b);
 int				is_sorted_stack(t_list *stack);
 void			print_stack(t_list *stack);
-int				get_pivot(t_list *stack, int size);
+int				get_median(t_list *stack, int size);
+int				get_stack_size(t_list *stack);
 
 /*
 ** ##################### MAIN #####################
