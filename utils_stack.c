@@ -6,12 +6,29 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:57:28 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 21:49:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/25 19:39:22 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <stdio.h>
+
+/*
+** Returns the number of elements in the stack
+*/
+
+int			get_size_stack(t_list *stack)
+{
+	int		size;
+
+	size = 0;
+	while (stack)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return (size);
+}
 
 /*
 ** Creating new empty stack (single linked list)
@@ -103,7 +120,7 @@ void		print_stack(t_list *stack)
 	while (stack)
 	{
 		if (stack->content)
-			printf("%d\n", *(int*)stack->content);
+			printf("%d ", *(int*)stack->content);
 		stack = stack->next;
 	}
 }

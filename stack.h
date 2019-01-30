@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/24 19:57:09 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/25 19:43:01 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 */
 
 void			swap_stack(t_list **stack);
-void			put_stack(t_list **a, t_list **b);
+void			put_stack(t_list **dst, t_list **src);
 void			rotate_stack(t_list **stack);
 void			rev_rotate_stack(t_list **stack);
 
@@ -42,11 +42,13 @@ void			del_content(void *content, size_t size);
 void			clear2stacks(t_list *a, t_list *b);
 int				is_sorted_stack(t_list *stack);
 void			print_stack(t_list *stack);
+int				get_size_stack(t_list *stack);
 
 /*
 ** ##################### MAIN #####################
 */
 
 int				fill_stack(t_list **stack, char **vals, int size);
+void			quick_sort(t_list **a, t_list **b, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/24 19:48:57 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/25 19:29:03 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** stack->content = (int)val, otherwise it does not write the content
 */
 
-void		set_int2stack(t_list *stack, char *val)
+static void	set_int2stack(t_list *stack, char *val)
 {
 	long	res;
 	int		*p_res;
@@ -49,7 +49,7 @@ void		set_int2stack(t_list *stack, char *val)
 ** NOTE: the function is not protected
 */
 
-int			fill_stack2int(t_list *stack, char **vals, int amount)
+static int	fill_stack2int(t_list *stack, char **vals, int amount)
 {
 	int		i;
 
@@ -70,7 +70,7 @@ int			fill_stack2int(t_list *stack, char **vals, int amount)
 ** returns 1 if found duplicate, otherwise returns 0
 */
 
-int			check_dup(t_list *stack)
+static int	check_dup(t_list *stack)
 {
 	t_list	*head;
 	int		dup;
