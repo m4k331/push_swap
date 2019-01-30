@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/30 21:31:32 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/30 23:27:18 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int				*get_array_nums(t_list *stack, int size);
 
 int				fill_stack(t_list **stack, char **vals, int size);
 void			quick_sort(t_list **a, t_list **b, int size);
+void			intqsort(int *src, int start, int end);
+void			set_position2val(t_list *stack, int *nums);
 
 #endif

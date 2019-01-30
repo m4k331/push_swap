@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 21:10:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/30 21:20:27 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/30 22:17:15 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	partition(int *nums, int size)
 	{
 		if (nums[left] <= nums[wall])
 		{
-			ft_swap(&nums[left], &nums[wall], sizeof(int));
+			ft_memswap(&nums[left], &nums[wall], sizeof(int));
 			wall = left;
 			left++;
 		}
@@ -38,7 +38,7 @@ static int	partition(int *nums, int size)
 		{
 			while (nums[right] > nums[wall] && right != left)
 				right--;
-			ft_swap(&nums[left], &nums[right], sizeof(int));
+			ft_memswap(&nums[left], &nums[right], sizeof(int));
 		}
 	}
 	return (wall);
