@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/24 23:29:35 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/30 21:29:11 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ size_t				ft_vsize(t_vector *v);
 void				ft_vpop_back(t_vector *v);
 size_t				ft_vcapacity(t_vector *v);
 void				ft_vreserve(t_vector *v, size_t count);
-void				ft_vinsert(t_vector *v, size_t pos, void *src,  size_t cnt);
-
 
 #endif

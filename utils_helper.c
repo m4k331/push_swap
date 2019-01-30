@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 21:29:59 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/30 21:30:44 by ahugh            ###   ########.fr       */
+/*   Created: 2019/01/30 20:56:41 by ahugh             #+#    #+#             */
+/*   Updated: 2019/01/30 21:10:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "stack.h"
+#include "libft.h"
 
-int			main(int ac, char **av)
+int			*get_array_nums(t_list *stack, int size)
 {
-	t_list	*a;
-	t_list	*b;
+	int		*nums;
+	int		iter;
 
-	b = 0;
-	fill_stack(&a, ++av, --ac);
-	printf("[%d] INPUT: ", ac);
-	print_stack(a);
-	printf("\n");
-	quick_sort(&a, &b, ac);
-	printf("\nA: ");
-	print_stack(a);
-	printf("\n");
-	printf("B: ");
-	print_stack(b);
-	printf("\n");
-	if (is_sorted_stack(a))
-		printf("OK\n");
-	return (0);
+	iter = 0;
+	if ((nums = (int*)malloc(sizeof(int) * size)))
+	{
+		while (stack && size--)
+		{
+			nums[iter++] = *(int*)stack->content;
+			stack = stack->next;
+		}
+	}
+	return (nums);
 }

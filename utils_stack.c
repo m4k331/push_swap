@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:57:28 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 21:49:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/30 21:20:40 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,4 @@ void		print_stack(t_list *stack)
 			printf("%d ", *(int*)stack->content);
 		stack = stack->next;
 	}
-}
-
-int			get_stack_size(t_list *stack)
-{
-	int		size;
-
-	size = 0;
-	while (stack)
-	{
-		size++;
-		stack = stack->next;
-	}
-	return (size);
 }

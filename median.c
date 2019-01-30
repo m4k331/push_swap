@@ -1,40 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   median.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/30 21:10:46 by ahugh             #+#    #+#             */
+/*   Updated: 2019/01/30 21:20:27 by ahugh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "stack.h"
 #include "libft.h"
 
-void				swap(void *a, void *b, int size)
-{
-	unsigned char	*pa;
-	unsigned char	*pb;
-	unsigned char	tmp;
-
-	pa = a;
-	pb = b;
-	while (size--)
-	{
-		tmp = *pa;
-		*pa = *pb;
-		*pb = tmp;
-		pa++;
-		pb++;
-	}
-}
-
-static int	*get_array_nums(t_list *stack, int size)
-{
-	int		*nums;
-	int		iter;
-
-	iter = 0;
-	if ((nums = (int*)malloc(sizeof(int) * size)))
-	{
-		while (stack && size--)
-		{
-			nums[iter++] = *(int*)stack->content;
-			stack = stack->next;
-		}
-	}
-	return (nums);
-}
+/*
+** The function divides the stack into two parts
+*/
 
 static int	partition(int *nums, int size)
 {
@@ -49,7 +30,7 @@ static int	partition(int *nums, int size)
 	{
 		if (nums[left] <= nums[wall])
 		{
-			swap(&nums[left], &nums[wall], sizeof(int));
+			ft_swap(&nums[left], &nums[wall], sizeof(int));
 			wall = left;
 			left++;
 		}
@@ -57,11 +38,15 @@ static int	partition(int *nums, int size)
 		{
 			while (nums[right] > nums[wall] && right != left)
 				right--;
-			swap(&nums[left], &nums[right], sizeof(int));
+			ft_swap(&nums[left], &nums[right], sizeof(int));
 		}
 	}
 	return (wall);
 }
+
+/*
+** Returns the median on the stack using the qselect algorithm
+*/
 
 static int	quickselect(int *nums, int size, int k)
 {
@@ -81,6 +66,10 @@ static int	quickselect(int *nums, int size, int k)
 	return (quickselect(nums, size, k));
 }
 
+/*
+** Returns the median on the stack using bruteforce
+*/
+
 static int	bruteforce(t_list *stack, int k)
 {
 	t_list	*head;
@@ -96,13 +85,17 @@ static int	bruteforce(t_list *stack, int k)
 			if (*(int*)iter->content <= *(int*)stack->content)
 				count++;
 			iter = iter->next;
-		}	
+		}
 		if (count == k || !(stack = stack->next))
 			break ;
 		count = 0;
 	}
 	return (*(int*)stack->content);
 }
+
+/*
+** Returns the median
+*/
 
 int			get_median(t_list *stack, int size)
 {
