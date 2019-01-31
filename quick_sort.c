@@ -6,14 +6,14 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 21:23:18 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/30 21:28:06 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/31 18:50:35 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
 
-static int	stack_ascending(t_list *stack, int size)
+int			stack_ascending(t_list *stack, int size)
 {
 	int		ascending;
 	t_list	*previous;
@@ -35,7 +35,7 @@ static int	stack_ascending(t_list *stack, int size)
 	return (ascending);
 }
 
-static int	stack_descending(t_list *stack, int size)
+int			stack_descending(t_list *stack, int size)
 {
 	int		descending;
 	t_list	*previous;

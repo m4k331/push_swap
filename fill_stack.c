@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/30 19:48:14 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/01/31 16:30:34 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 /*
 ** The function accepts a pointer to the stack and a string value (val)
 ** that contains an integer in string. If val is valid an integer then
-** stack->content = val, otherwise it does not write the content
+** stack->content = (int)val, otherwise it does not write the content
 */
 
-void		set_val2stack(t_list *stack, char *val)
+void		set_int2stack(t_list *stack, char *val)
 {
-	t_val	*val_res;
 	long	res;
+	int		*p_res;
 	int		sign;
 
 	res = 0;
-	val_res = 0;
+	p_res = 0;
 	sign = *val == '-' ? -1 : 1;
 	if (*val == '-' || *val == '+')
 		val++;
@@ -35,28 +35,28 @@ void		set_val2stack(t_list *stack, char *val)
 	while (ft_isdigit(*val) && res < __INT_MAX__)
 		res = res * 10 + (*val++ - 48);
 	res *= sign;
-	if (!*val && IS_INT(res) && (val_res = (t_val*)malloc(sizeof(t_val))))
+	if (!*val && IS_INT(res) && (p_res = (int*)malloc(sizeof(int))))
 	{
-		val_res->num = (int)res;
-		stack->content = (void*)val_res;
-		stack->content_size = sizeof(t_val);
+		*p_res = (int)(res);
+		stack->content = (void*)p_res;
+		stack->content_size = sizeof(int);
 	}
 }
 
 /*
-** The function fill stack takes an array strings that contains val (integers)
+** The function fill stack takes an array strings that contains integers
 ** returns 1 if successful, otherwise returns 0
 ** NOTE: the function is not protected
 */
 
-int			fill_stack2val(t_list *stack, char **vals, int amount)
+int			fill_stack2int(t_list *stack, char **vals, int amount)
 {
 	int		i;
 
 	i = 0;
 	while (stack)
 	{
-		set_val2stack(stack, vals[i]);
+		set_int2stack(stack, vals[i]);
 		if (!(stack->content))
 			break ;
 		stack = stack->next;
@@ -82,7 +82,7 @@ int			check_dup(t_list *stack)
 		while (stack->next)
 		{
 			stack = stack->next;
-			if (((t_val*)head->content)->num == ((t_val*)stack->content)->num)
+			if (*(int*)head->content == *(int*)stack->content)
 			{
 				dup = 1;
 				break ;
@@ -105,7 +105,7 @@ int			fill_stack(t_list **stack, char **vals, int size)
 
 	err = 0;
 	*stack = create_stack(size);
-	if ((fill_stack2val(*stack, vals, size)))
+	if ((fill_stack2int(*stack, vals, size)))
 		err = check_dup(*stack);
 	else
 		err = 1;
