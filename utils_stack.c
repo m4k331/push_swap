@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:57:28 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/31 18:58:59 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/04 09:50:17 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,9 @@ int			is_sorted_stack(t_list *stack)
 
 void		del_content(void *content, size_t size)
 {
-	if (content && size)
-	{
-		free(content);
-		content = 0;
-	}
+	if (content)
+		ft_memdel((void**)&content);
+	size = 0;
 }
 
 /*

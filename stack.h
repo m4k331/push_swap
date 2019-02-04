@@ -6,13 +6,19 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/31 20:55:33 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/04 19:10:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
 # include "libft.h"
+
+typedef struct	s_iter
+{
+	int			i;
+	int			c;
+}				t_iter;
 
 /*
 ** ##################### INSTRUCTIONS #####################
@@ -31,10 +37,10 @@ int				wrap_swap(t_list **a, t_list **b, char *inst);
 int				wrap_put(t_list **a, t_list **b, char *inst);
 int				wrap_rotate(t_list **a, t_list **b, char *inst);
 int				wrap_rev_rotate(t_list **a, t_list **b, char *inst);
-int				ins_swap(t_list **ins, t_list **a, t_list **b, char* in);
-int				ins_put(t_list **ins, t_list **a, t_list **b, char* in);
-int				ins_rotate(t_list **ins, t_list **a, t_list **b, char* in);
-int				ins_rev_rotate(t_list **ins, t_list **a, t_list **b, char* in);
+int				ins_swap(t_list **ins, t_list **a, t_list **b, char *in);
+int				ins_put(t_list **ins, t_list **a, t_list **b, char *in);
+int				ins_rotate(t_list **ins, t_list **a, t_list **b, char *in);
+int				ins_rev_rotate(t_list **ins, t_list **a, t_list **b, char *in);
 
 /*
 ** ##################### UTILS #####################
@@ -58,5 +64,7 @@ int				stack_ascending(t_list *stack, int size);
 
 int				fill_stack(t_list **stack, char **vals, int size);
 void			quick_sort(t_list **a, t_list **b, int size);
+void			bt_ascending(t_list **stack, t_list **ins, size_t size);
+void			bt_descending(t_list **stack, t_list **ins, size_t size);
 
 #endif
