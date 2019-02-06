@@ -6,12 +6,11 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 21:10:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/30 22:17:15 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/06 13:19:42 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-#include "libft.h"
 
 /*
 ** The function divides the stack into two parts

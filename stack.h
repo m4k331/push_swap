@@ -6,19 +6,13 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/04 19:10:38 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/06 21:49:41 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
 # include "libft.h"
-
-typedef struct	s_iter
-{
-	int			i;
-	int			c;
-}				t_iter;
 
 /*
 ** ##################### INSTRUCTIONS #####################
@@ -46,17 +40,16 @@ int				ins_rev_rotate(t_list **ins, t_list **a, t_list **b, char *in);
 ** ##################### UTILS #####################
 */
 
-t_list			*create_stack(int size);
 void			del_content(void *content, size_t size);
 void			clear2stacks(t_list *a, t_list *b);
 int				is_sorted_stack(t_list *stack);
 void			print_stack(t_list *stack);
 void			print_stack_ins(t_list *stack);
 int				get_median(t_list *stack, int size);
-int				get_stack_size(t_list *stack);
-int				*get_array_nums(t_list *stack, int size);
 int				stack_descending(t_list *stack, int size);
 int				stack_ascending(t_list *stack, int size);
+void			index_stack(t_list *stack, int size);
+void			partition(t_list **a, t_list **b, t_list **ins, int part);
 
 /*
 ** ##################### MAIN #####################

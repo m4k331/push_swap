@@ -6,56 +6,12 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 21:23:18 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/31 18:50:35 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/06 12:05:13 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
-
-int			stack_ascending(t_list *stack, int size)
-{
-	int		ascending;
-	t_list	*previous;
-
-	ascending = 1;
-	previous = stack;
-	if (!stack || !size)
-		return (ascending);
-	while (stack->next && --size > 0)
-	{
-		stack = stack->next;
-		if (*(int*)previous->content > *(int*)stack->content)
-		{
-			ascending = 0;
-			break ;
-		}
-		previous = stack;
-	}
-	return (ascending);
-}
-
-int			stack_descending(t_list *stack, int size)
-{
-	int		descending;
-	t_list	*previous;
-
-	descending = 1;
-	previous = stack;
-	if (!stack || !size)
-		return (descending);
-	while (stack->next && --size > 0)
-	{
-		stack = stack->next;
-		if (*(int*)previous->content < *(int*)stack->content)
-		{
-			descending = 0;
-			break ;
-		}
-		previous = stack;
-	}
-	return (descending);
-}
 
 static void	swap_ascending(t_list **stack, int size)
 {

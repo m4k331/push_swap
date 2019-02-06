@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/31 16:30:34 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/06 09:27:45 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int			fill_stack(t_list **stack, char **vals, int size)
 	int		err;
 
 	err = 0;
-	*stack = create_stack(size);
+	*stack = ft_lstcreate(size);
 	if ((fill_stack2int(*stack, vals, size)))
 		err = check_dup(*stack);
 	else

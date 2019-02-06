@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 10:56:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/04 16:47:22 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/06 09:23:14 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstat(t_list *lst, size_t nbr);
 t_list				*ft_lstjoin(t_list *alst, t_list *blst);
+t_list				*ft_lstcreate(int size);
 size_t				ft_lstsize(t_list *lst);
 void				ft_lstrev(t_list **alst);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
