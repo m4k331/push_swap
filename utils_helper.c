@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 20:56:41 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/06 13:36:34 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/07 14:15:44 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,32 @@ int			stack_descending(t_list *stack, int size)
 		previous = stack;
 	}
 	return (descending);
+}
+
+void		partition(t_list **a, t_list **b, t_list **ins, int part)
+{
+	int		index;
+	int		iter;
+	int		wall;
+
+	index = 0;
+	iter = 0;
+	wall = 0;
+	while (*a && (index += part))
+	{
+		if ((iter = ft_lstsize(*a)) <= part)
+		{
+			if (iter < 6)
+				bt_ascending(a, ins, iter);
+			else
+				in_ascending(a, ins, iter);
+			break ;
+		}
+		wall = get_val_index(*a, index);
+		while (*a && iter--)
+			if (wall >= *(int*)(*a)->content)
+				ins_put(ins, a, b, "pb");
+			else
+				ins_rotate(ins, a, b, "ra");
+	}
 }
