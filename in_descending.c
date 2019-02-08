@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:18:18 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/07 16:50:03 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/08 22:27:27 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,27 @@ void		in_descending(t_list **a, t_list **b,  t_list **ins, int size)
 	int		max;
 
 	max = *b ? get_max_index(*b, size) : 0;
-	if (!max)
-		return ;
-	while (!stack_descending(*b, size))
-		if (size < 4)
-			bt_descending(b, ins, size);
-		else if (max == (*b)->content_size)
-		{
-			ins_put(ins, a, b, "pa");
-			size--;
-			max = get_max_index(*b, size);
-		}
-		else
-		{
-			if (get_pos(*b, get_max_index(*b, size)) > (size / 2))
-				ins_rev_rotate(ins, a, b, "rrb");
+	if (max)
+	{
+		while (!stack_descending(*b, size))
+			if (size < 4)
+				bt_descending(b, ins, size);
+			else if (max == (*b)->content_size)
+			{
+				ins_put(ins, a, b, "pa");
+				size--;
+				max = get_max_index(*b, size);
+			}
 			else
-				ins_rotate(ins, a, b, "rb");
+			{
+				if (get_pos(*b, get_max_index(*b, size)) > (size / 2))
+					ins_rev_rotate(ins, a, b, "rrb");
+				else
+					ins_rotate(ins, a, b, "rb");
 //			if ((*b)->content_size < ((*b)->next)->content_size)
 //				ins_swap(ins, a, b, "sb");
-		}
-	while (size--)
-		ins_put(ins, a, b, "pa");
+			}
+		while (size--)
+			ins_put(ins, a, b, "pa");
+	}
 }

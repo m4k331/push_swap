@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 20:56:41 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/07 14:15:44 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/08 22:28:21 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,27 @@ void		partition(t_list **a, t_list **b, t_list **ins, int part)
 			else
 				ins_rotate(ins, a, b, "ra");
 	}
+}
+
+int			find_max_lr(t_list *stack, int left, int right)
+{
+	int		max;
+
+	max = stack ? stack->content_size : 0;
+	if (!stack)
+		return (0);
+	while (left--)
+	{
+		if (max < stack->content_size)
+			max = stack->content_size;
+		stack = stack->next;
+	}
+	stack = ft_lstat(stack, ft_lstsize(stack) - right);
+	while (stack)
+	{
+		if (max < stack->content_size)
+			max = stack->content_size;
+		stack = stack->next;
+	}
+	return (max);
 }
