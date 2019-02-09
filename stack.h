@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/08 22:20:41 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/09 19:06:10 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ size_t			get_max_index(t_list *stack, int size);
 int				get_val_index(t_list *stack, int index);
 void			in_ascending(t_list **stack, t_list **ins, int size);
 void			in_descending(t_list **a, t_list **b,  t_list **ins, int size);
-int				find_max_lr(t_list *stack, int left, int right);
 
 /*
 ** ##################### MAIN #####################
@@ -65,6 +64,6 @@ void			quick_sort(t_list **a, t_list **b, int size);
 void			bt_ascending(t_list **stack, t_list **ins, size_t size);
 void			bt_descending(t_list **stack, t_list **ins, size_t size);
 void			partition(t_list **a, t_list **b, t_list **ins, int part);
-void			insertion(t_list **a, t_list **b, t_list **ins, int size);
+void			in_mid(t_list **a, t_list **b, t_list **ins, int size);
 
 #endif

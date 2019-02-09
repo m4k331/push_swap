@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:18:18 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/08 22:27:27 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/09 19:34:01 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void		in_descending(t_list **a, t_list **b,  t_list **ins, int size)
 					ins_rev_rotate(ins, a, b, "rrb");
 				else
 					ins_rotate(ins, a, b, "rb");
-//			if ((*b)->content_size < ((*b)->next)->content_size)
-//				ins_swap(ins, a, b, "sb");
 			}
 		while (size--)
 			ins_put(ins, a, b, "pa");
