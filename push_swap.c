@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 21:29:59 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/09 20:50:05 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/10 11:01:19 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ int			main(int ac, char **av)
 	b = 0;
 	ins = 0;
 	fill_stack(&a, ++av, --ac);
-	printf("A:  ");print_stack(a);printf("\n");
+	printf("[amount elems:%d]\nA:  ", ac);print_stack(a);printf("\n");
 	printf("B:  ");print_stack(b);printf("\n");
 	index_stack(a, ac);
 	//for (int i = 0; i < 21; i++)
 	//	put_stack(&b, &a);
 	//in_mid(&a, &b, &ins, 20);
 	//ft_lstrev(&ins);
-	ins = get_ins(&a, &b, 16);
+	//ins = get_ins(&a, &b, 16);
+	quick_sort(&a, &b, &ins, 25);
 	printf("2STACK INS:  ");print_stack_ins(ins);printf("\n");
 	int h = 0;
 	while (ins && ++h)

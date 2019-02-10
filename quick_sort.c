@@ -6,47 +6,40 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 21:23:18 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/06 12:05:13 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/10 12:04:44 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
-
-static void	swap_ascending(t_list **stack, int size)
+/*
+static void	swap_ascending(t_list **stack, int sz)
 {
 	swap_stack(stack);
-	if (stack_ascending(*stack, size))
+	if (stack_ascending(*stack, sz))
 		return ;
 	swap_stack(stack);
 }
-
-static void	swap_descending(t_list **stack, int size)
-{
-	swap_stack(stack);
-	if (stack_descending(*stack, size))
-		return ;
-	swap_stack(stack);
-}
-
-int			partition_ascending(t_list **a, t_list **b, int size)
+*/
+/*
+int			partition_ascending(t_list **a, t_list **b, int sz)
 {
 	int		iter;
 	int		rot;
 	int		put;
 	int		pivot;
 
-	if (size == 0 || size == 1 || stack_ascending(*a, size))
+	if (sz == 0 || sz == 1 || stack_ascending(*a, sz))
 		return (0);
 	rot = 0;
 	put = 0;
-	iter = size + 1;
-	pivot = get_median(*a, size);
+	iter = sz + 1;
+	pivot = get_median(*a, sz);
 	while (--iter)
-		if (!stack_ascending(*a, size - put) || *(int*)(*a)->content < pivot)
+		if (!stack_ascending(*a, sz - put) || *(int*)(*a)->content < pivot)
 		{
 			if (iter == 2 || iter == 3)
-				swap_ascending(a, size);
+				swap_ascending(a, ins, sz);
 			if (*(int*)(*a)->content < pivot && ++put)
 				put_stack(b, a);
 			else if (++rot)
@@ -56,82 +49,98 @@ int			partition_ascending(t_list **a, t_list **b, int size)
 		rev_rotate_stack(a);
 	return (put);
 }
+*/
+static void	swap_descending(t_list **a, t_list **b, t_list **ins, int sz)
+{
+	ins_swap(ins, a, b, "sb");
+	if (stack_descending(*b, sz))
+		return ;
+	swap_stack(b);
+	ft_lstdelnbr(ins, del_content, 0);
+}
 
-int			partition_descending(t_list **a, t_list **b, int size)
+static int	partition_desc(t_list **a, t_list **b, t_list **ins, int sz)
 {
 	int		iter;
 	int		rot;
 	int		put;
 	int		pivot;
 
-	if (size == 0)
+	if (!sz)
 		return (0);
 	rot = 0;
 	put = 0;
-	iter = size + 1;
-	pivot = get_median(*b, size);
+	iter =sz + 1;
+	pivot = get_median(*b, sz);
 	while (--iter)
 	{
-		if (!stack_descending(*b, size) && (iter == 2 || iter == 3))
-			swap_descending(b, size);
-		if (*(int*)(*b)->content >= pivot && ++put)
-			put_stack(a, b);
+		if (!stack_descending(*b, sz) && (iter == 2 || iter == 3))
+			swap_descending(a, b, ins, sz);
+		if ((*b)->content_size >= pivot && ++put)
+			ins_put(ins, a, b, "pa");
 		else if (++rot)
-			rotate_stack(b);
+			ins_rotate(ins, a, b, "rb");
 	}
 	while (rot--)
-		rev_rotate_stack(b);
+		ins_rev_rotate(ins, a, b, "rrb");
 	return (put);
 }
-
-static int	right_sort(t_list **a, t_list **b, int size)
+/*
+static int	right_sort(t_list **a, t_list **b, int sz)
 {
 	int		put;
 
-	put = partition_ascending(a, b, size);
-	size -= put;
-	if (!stack_ascending(*a, size))
-		put += right_sort(a, b, size);
+	put = partition_ascending(a, b, sz);
+	sz -= put;
+	if (!stack_ascending(*a, sz))
+		put += right_sort(a, b, sz);
 	return (put);
 }
-
-static void	left_sort(t_list **a, t_list **b, int size)
+*/
+static void	in_sort(t_list **a, t_list **b, t_list **ins, int sz, int sz_part)
 {
 	int		put;
 
-	if (size == 0)
-		return ;
-	put = partition_descending(a, b, size);
-	size -= put;
-	if (stack_ascending(*a, put) && stack_descending(*b, size))
-		left_sort(a, b, size);
+	if (!sz || sz <= sz_part)
+		in_mid(a, b, ins, sz);
 	else
-		left_sort(a, b, size + right_sort(a, b, put));
+	{
+		put = partition_desc(a, b, ins, sz);
+		in_descending(a, b, ins, sz);
+	//	sz -= put;
+	//	if (stack_ascending(*a, put) && stack_descending(*b, sz))
+	//		left_sort(a, b, sz);
+	//	else
+	//		left_sort(a, b, sz + right_sort(a, b, put));
+	}
 }
 
-void		quick_sort(t_list **a, t_list **b, int size)
+
+
+void		quick_sort(t_list **a, t_list **b, t_list **ins, int sz_part)
 {
+	int		sz;
 	int		pivot;
-	int		iter;
+	int		i;
 	int		put;
 
-	pivot = get_median(*a, size);
 	put = 0;
-	iter = size;
-	if (!size || stack_ascending(*a, size))
+	sz = *a ? ft_lstsize(*a) : 0;
+	pivot = get_median(*a, sz);
+	if (!(i = sz) || !sz_part || stack_ascending(*a, sz))
 		return ;
-	if (size == 2 || size == 3)
-		swap_ascending(a, size);
-	while (!stack_ascending(*a, size - put) && iter--)
+	if (sz <= sz_part)
+		sz < 6 ? bt_ascending(a, ins, sz) : in_ascending(a, ins, sz);
+	while (!stack_ascending(*a, sz - put) && i--)
 	{
-		if (stack_ascending(*a, size - put) && *(int*)(*a)->content >= pivot)
+		if (stack_ascending(*a, sz - put) && (*a)->content_size >= pivot)
 			break ;
-		if (*(int*)(*a)->content < pivot && ++put)
-			put_stack(b, a);
+		if ((*a)->content_size < pivot && ++put)
+			ins_put(ins, a, b, "pb");
 		else
-			rotate_stack(a);
+			ins_rotate(ins, a, b, "ra");
 	}
-	if (!stack_ascending(*a, size - put))
-		quick_sort(a, b, size - put);
-	left_sort(a, b, put);
+	if (!stack_ascending(*a, sz - put))
+		quick_sort(a, b, ins, sz_part);
+	in_sort(a, b, ins, put, sz_part);
 }

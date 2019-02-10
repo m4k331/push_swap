@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/09 19:06:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/02/10 11:31:50 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			in_descending(t_list **a, t_list **b,  t_list **ins, int size);
 */
 
 int				fill_stack(t_list **stack, char **vals, int size);
-void			quick_sort(t_list **a, t_list **b, int size);
+void			quick_sort(t_list **a, t_list **b, t_list **ins, int sz_part);
 void			bt_ascending(t_list **stack, t_list **ins, size_t size);
 void			bt_descending(t_list **stack, t_list **ins, size_t size);
 void			partition(t_list **a, t_list **b, t_list **ins, int part);
