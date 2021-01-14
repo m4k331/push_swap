@@ -6,41 +6,11 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:57:28 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/20 21:49:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/04/01 17:51:47 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
-#include <stdio.h>
-
-/*
-** Creating new empty stack (single linked list)
-*/
-
-t_list		*create_stack(int size)
-{
-	int		count;
-	t_list	*head;
-	t_list	*iter;
-
-	count = 0;
-	if (!(count++ < size && (head = ft_lstnew(0, 0))))
-		return (0);
-	iter = head;
-	while (count < size)
-		if ((iter->next = ft_lstnew(0, 0)) && ++count)
-			iter = iter->next;
-		else
-			break ;
-	if (count != size)
-		while (head)
-		{
-			iter = head->next;
-			free(head);
-			head = iter;
-		}
-	return (head);
-}
+#include "../stack.h"
 
 /*
 ** Check stack a is asceding sorted returns 1 if sorted else 0
@@ -73,25 +43,9 @@ int			is_sorted_stack(t_list *stack)
 
 void		del_content(void *content, size_t size)
 {
-	if (content && size)
-	{
-		free(content);
-		content = 0;
-	}
-}
-
-/*
-** Function clearing two stacks
-*/
-
-void		clear2stacks(t_list *a, t_list *b)
-{
-	if (a)
-		ft_lstdel(&a, del_content);
-	if (b)
-		ft_lstdel(&b, del_content);
-	a = 0;
-	b = 0;
+	if (content)
+		ft_memdel((void**)&content);
+	size = 0;
 }
 
 /*
@@ -102,8 +56,18 @@ void		print_stack(t_list *stack)
 {
 	while (stack)
 	{
-		if (stack->content)
-			printf("%d\n", *(int*)stack->content);
+		ft_putnbr(*(int*)stack->content);
+		write(1, " ", 1);
+		stack = stack->next;
+	}
+}
+
+void		print_stack_ins(t_list *stack, int fd)
+{
+	while (stack)
+	{
+		ft_putstr_fd(stack->content, fd);
+		write(fd, "\n", 1);
 		stack = stack->next;
 	}
 }

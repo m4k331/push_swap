@@ -6,11 +6,11 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 20:55:44 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/24 19:48:57 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/04/01 17:51:55 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../stack.h"
 #define IS_INT(x) ((x) >= -__INT_MAX__ - 1 && (x) <= __INT_MAX__)
 
 /*
@@ -19,11 +19,11 @@
 ** stack->content = (int)val, otherwise it does not write the content
 */
 
-void		set_int2stack(t_list *stack, char *val)
+static void			set_int2stack(t_list *stack, char *val)
 {
-	long	res;
-	int		*p_res;
-	int		sign;
+	long			res;
+	int				*p_res;
+	int				sign;
 
 	res = 0;
 	p_res = 0;
@@ -44,72 +44,88 @@ void		set_int2stack(t_list *stack, char *val)
 }
 
 /*
+** The function of checking duplicate content in the stack
+** returns 1 if found duplicate, otherwise returns 0
+*/
+
+static int			check_dup(t_list *stack, int num)
+{
+	while (stack)
+	{
+		if (*(int*)stack->content == num)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
+/*
+** Freeing space in array vals
+*/
+
+static inline void	free_vals(char ***vals)
+{
+	char			**iter;
+
+	iter = *vals;
+	if (iter)
+	{
+		while (*iter)
+		{
+			free(*iter);
+			iter++;
+		}
+		free(*vals);
+		*vals = 0;
+	}
+}
+
+/*
 ** The function fill stack takes an array strings that contains integers
 ** returns 1 if successful, otherwise returns 0
 ** NOTE: the function is not protected
 */
 
-int			fill_stack2int(t_list *stack, char **vals, int amount)
+static int			fill_stack2int(t_list **stack, char **args, int amount)
 {
-	int		i;
+	t_list			*lst;
+	char			**vals;
+	int				i;
 
-	i = 0;
-	while (stack)
+	lst = 0;
+	vals = 0;
+	while ((i = -1) && amount--)
 	{
-		set_int2stack(stack, vals[i]);
-		if (!(stack->content))
-			break ;
-		stack = stack->next;
-		i++;
-	}
-	return ((i == amount ? 1 : 0));
-}
-
-/*
-** The function of checking duplicate content in the stack
-** returns 1 if found duplicate, otherwise returns 0
-*/
-
-int			check_dup(t_list *stack)
-{
-	t_list	*head;
-	int		dup;
-
-	dup = 0;
-	head = stack;
-	while (head && !dup)
-	{
-		while (stack->next)
-		{
-			stack = stack->next;
-			if (*(int*)head->content == *(int*)stack->content)
+		vals = ft_strsplit(*args++, ' ');
+		while (vals[++i])
+			if ((lst = ft_lstnew(0, 0)))
 			{
-				dup = 1;
-				break ;
+				set_int2stack(lst, vals[i]);
+				if (!lst->content || check_dup(*stack, *(int*)lst->content))
+				{
+					free_vals(&vals);
+					return (0);
+				}
+				ft_lstaddlast(stack, lst);
 			}
-		}
-		head = head->next;
-		stack = head;
+			else
+				return (0);
+		free_vals(&vals);
 	}
-	return (dup);
+	return (1);
 }
 
 /*
 ** The function filled stack with an integers
-** In case of invalid input, the function clears the stack and return NULL
+** In case of invalid input, the function clears the stack and return -1
 */
 
-int			fill_stack(t_list **stack, char **vals, int size)
+int					fill_stack(t_list **stack, char **vals, int size)
 {
-	int		err;
-
-	err = 0;
-	*stack = create_stack(size);
-	if ((fill_stack2int(*stack, vals, size)))
-		err = check_dup(*stack);
-	else
-		err = 1;
-	if (err)
+	if (!fill_stack2int(stack, vals, size))
+	{
 		ft_lstdel(stack, del_content);
-	return (!err);
+		return (-1);
+	}
+	return (0);
 }
